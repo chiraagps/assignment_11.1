@@ -1,3 +1,4 @@
+from locators import LoginPageLocators
 import pytest
 from selenium import webdriver
 import sys
@@ -10,7 +11,6 @@ from time import sleep
 from locators import *
 
 
-#run code: pytest -s login_valid.py
 
 def test_valid_login():
     #used only "chrome() as the driver is already present inside the PATH in MACOS"
@@ -19,6 +19,7 @@ def test_valid_login():
     driver = webdriver.Chrome()
     driver.get('http://demo.guru99.com/insurance/v1/index.php')
     driver.maximize_window()
+    print('')
 
 
     #giving the valid email id
@@ -34,27 +35,21 @@ def test_valid_login():
     #check logout button is present or not
     element=driver.find_element(*ProfilePageLocators.LOGOUT_BUTTON)
     assert element.is_displayed()
-    print("Login is successful. Logout button is present in the page.")
+    print("Login is successfull. Logout button is present in the page.")
 
-    #check title present or not
-    assert "Insurance Broker System" in driver.title
-    print("Title present")
+    #clicking on logout 
+    logout_but=driver.find_element(*ProfilePageLocators.LOGOUT_BUTTON).click()
 
-    #check url correct or not
-    assert  "http://demo.guru99.com/insurance/v1/header.php" in driver.current_url
-    print("The current url is http://demo.guru99.com/insurance/v1/header.php")
+    #checking logout and presence of login button
+    login_but=driver.find_element(*LoginPageLocators.LOGIN_BUTTON)
+    assert login_but.is_displayed()
+    print("Logout is successfull and Login button is present")
 
-    #check page contains a text or not
-    assert  "Broker Insurance WebPage" in driver.page_source
-    print("The text is present Broken Insurance WebPage")
+    #checking page title
+    assert "Insurance Broker System - Login" in driver.title
+    print("The current page title is Insurance Broker System - Login")
 
-    
+    #checking current page url
+    assert "http://demo.guru99.com/insurance/v1/index.php" in driver.current_url
+    print("The current url is http://demo.guru99.com/insurance/v1/index.php")
 
-    #Displaying the URL and page TITLE in console
-    #print("URL is:",driver.current_url)
-    #print("Title is:",driver.title)
-    
-
-
-
-  
