@@ -14,8 +14,14 @@ def test_login():
     driver.get('http://demo.guru99.com/insurance/v1/index.php')
     driver.maximize_window()
     
-    element = driver.find_element_by_id("email")
-    element.send_keys("chiraag")
+    email = driver.find_element_by_id("email")
+    email.send_keys("chiraagps@gmail.com")
+    password = driver.find_element_by_id("password")
+    password.send_keys("password")
+    driver.find_element_by_xpath(xpath='//input[@type="submit"]').click()
+    print('')
+    print("URL is:",driver.current_url)
+    print("Title is:",driver.title)
     sleep(5)
 
 
