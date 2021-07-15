@@ -12,7 +12,7 @@ from locators import *
 
 #run code: pytest -s login_invalid.py
 
-def test_invaild_login():
+def test_invalid_login():
     driver = webdriver.Chrome()
     driver.get('http://demo.guru99.com/insurance/v1/index.php')
     driver.maximize_window()
